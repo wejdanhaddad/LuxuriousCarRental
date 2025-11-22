@@ -1,0 +1,61 @@
+<div class="search-container">
+  <div class="search-wrapper">
+    <div class="search-input-group">
+      <i class="fas fa-crown search-icon"></i>
+      <input 
+        type="text" 
+        class="search-input" 
+        placeholder=" Search for your luxurious Car..." 
+        [(ngModel)]="searchTerm" 
+        (keyup.enter)="search()"
+        (input)="onInputChange()"
+        #searchInput
+      >
+      <div class="search-divider"></div>
+      <button class="search-btn" (click)="search()" [class.active]="searchTerm.length > 0">
+        <span class="btn-text">Descover</span>
+        <i class="fas fa-gem"></i>
+      </button>
+    </div>
+    
+    <!-- Quick Suggestions -->
+    <div class="suggestions-container" *ngIf="showSuggestions && searchTerm.length > 0">
+      <div class="suggestions-header">
+        <i class="fas fa-sparkles"></i>
+        <span>Suggestions Premium</span>
+      </div>
+      <div class="suggestions-list">
+        <div 
+          class="suggestion-item" 
+          *ngFor="let suggestion of filteredSuggestions"
+          (click)="selectSuggestion(suggestion)"
+        >
+          <i class="fas fa-car-side"></i>
+          <span class="suggestion-text">{{suggestion}}</span>
+          <i class="fas fa-chevron-right suggestion-arrow"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Premium Collections -->
+    <div class="collections-container" *ngIf="!searchTerm">
+      <div class="collections-header">
+        <i class="fas fa-star"></i>
+        <span>Collections d'Exception</span>
+      </div>
+      <div class="collections-grid">
+        <div 
+          class="collection-card" 
+          *ngFor="let collection of premiumCollections"
+          (click)="selectCollection(collection)"
+        >
+          <div class="collection-icon">
+            <i [class]="collection.icon"></i>
+          </div>
+          <span class="collection-name">{{collection.name}}</span>
+          <div class="collection-glow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<app-not-found [visible]="!car" notFoundMessage="Product Not Found!"
+resetLinkText="Back To Homepage"></app-not-found>
+<div *ngIf="car" class="container">
+    <img [src]="car.imageUrl" [alt]="car.nom" />
+
+    <div class="details">
+        <div class="header">
+            <span class="name">
+                {{car.nom}}
+            </span>
+            <span class="favorite {{car.favorite?'':'not'}}">
+                ❤
+            </span>
+        </div>
+        <div class="tags">
+            <app-tags [carPageTags]="car.tags" justifyContent="start"></app-tags>
+        </div>
+
+        <div class="prix">
+            <span>{{car.prix|currency}}</span>
+        </div>
+        <button (click)="addToCart()">Rèserve de Maintenant</button>
+
+</div>

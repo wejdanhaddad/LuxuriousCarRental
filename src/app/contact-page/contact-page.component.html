@@ -1,0 +1,19 @@
+<div class="form-container">
+    <h2>Nous Contacter</h2>
+    <form (ngSubmit)="onSubmit()">
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" name="prenom" [(ngModel)]="formulaireContact.prenom" required>
+  
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" name="nom" [(ngModel)]="formulaireContact.nom" required>
+  
+      <label for="email">Email :</label>
+      <input type="email" id="email" name="email" [(ngModel)]="formulaireContact.email" required>
+  
+      <label for="message">Message :</label>
+      <textarea id="message" name="message" [(ngModel)]="formulaireContact.message" required></textarea>
+  
+      <button type="submit">Soumettre</button>
+    </form>
+  </div>
+  

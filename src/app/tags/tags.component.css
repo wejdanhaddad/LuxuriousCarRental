@@ -1,0 +1,20 @@
+/* Tags Section */
+        .tags-section {
+            padding: 30px 0;
+            background: var(--secondary-dark);
+        }
+div{
+    display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+}
+div a{
+   padding: 8px 16px;
+            background: var(--primary-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 20px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s;
+}

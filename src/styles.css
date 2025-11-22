@@ -1,0 +1,19 @@
+@import url("https://fonts.google.com/specimen/Ephesis?display=swap&query=Ephesis");
+*{
+    box-sizing:border-box ;
+}
+html{
+    font-size: 16px;
+}
+body{
+    margin: 0;
+    font-family:"Ephesis";
+    font-size: 18px;
+}
+a{
+    text-decoration: none;
+}
+li a:hover{
+    opacity:0.9;
+    cursor:pointer;
+}

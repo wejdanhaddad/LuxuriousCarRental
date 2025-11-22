@@ -1,0 +1,77 @@
+:root {
+            --primary-dark: #0A0A0A;
+            --secondary-dark: #1A1A1A;
+            --accent-gold: #D4AF37;
+            --accent-gold-light: #E6C158;
+            --accent-gold-dark: #B8941F;
+            --text-light: #F5F5F5;
+            --text-muted: #A0A0A0;
+            --border-dark: #333333;
+            --card-bg: #151515;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+        /* Footer */
+        footer {
+            background: var(--secondary-dark);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border-dark);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            display: block;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+            max-width: 100%;
+        }
+
+        .footer-column ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+            background: transparent;
+            height: auto;
+            border: none;
+            padding: 0;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent-gold);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-dark);
+            color: var(--text-muted);
+            font-size: 14px;
+        }

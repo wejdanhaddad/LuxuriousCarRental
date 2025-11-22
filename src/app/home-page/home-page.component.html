@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Car Rentals</title>
+    <link rel="stylesheet" href="home-page.component.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<app-hero-section></app-hero-section>
+<app-search></app-search>
+<app-tags></app-tags>
+<app-not-found [visible]="!cars || cars.length <= 0" resetLinkText="Reset Search"></app-not-found>
+<body>
+    <script>
+        // Simple JavaScript for tag filtering and favorite toggling
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tag filtering
+            const tags = document.querySelectorAll('.tag');
+            tags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    tags.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    // In a real app, you would filter the car list here
+                });
+            });
+
+            // Favorite toggling
+            const favorites = document.querySelectorAll('.favorite');
+            favorites.forEach(fav => {
+                fav.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.classList.toggle('not');
+                });
+            });
+        });
+    </script>
+   <!-- Modern Car Grid Section -->
+<section class="cars-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Available Rides</h2>
+            <div class="view-controls">
+                <button class="view-btn" 
+                        [class.active]="currentView === 'grid'" 
+                        (click)="switchView('grid')">
+                    <i class="fas fa-th"></i>
+                </button>
+                <button class="view-btn" 
+                        [class.active]="currentView === 'list'" 
+                        (click)="switchView('list')">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div *ngIf="isLoading" class="loading-container">
+            <div class="loading-spinner"></div>
+            <p>Loading sick rides...</p>
+        </div>
+
+        <app-not-found [visible]="!isLoading && (!cars || cars.length <= 0)" resetLinkText="Reset Search"></app-not-found>
+
+        <!-- Cars Grid -->
+        <div class="cars-grid" [class.list-view]="currentView === 'list'" id="carsContainer">
+            <div *ngFor="let car of cars" 
+                 class="car-card" 
+                 [class.favorited]="car.favorite"
+                 [class.list-view]="currentView === 'list'">
+                
+                <!-- Remove the routerLink from the main card and add it to a separate clickable area -->
+                <a [routerLink]="['/car', car.id]" class="card-link">
+                    <div class="card-image">
+                        <img [src]="car.imageUrl" [alt]="car.nom" loading="lazy">
+                        <div class="card-badges">
+                            <span class="badge trending" *ngIf="car.trending">
+                                <i class="fas fa-fire"></i>
+                                Trending
+                            </span>
+                            <span class="badge discount" *ngIf="car.discount > 0">
+                                -{{car.discount}}%
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="card-content">
+                    <div class="card-header">
+                        <h3 class="car-name">{{car.nom}}</h3>
+                        <button class="favorite-btn" 
+                                (click)="toggleFavorite(car); $event.stopPropagation()" 
+                                [class.active]="car.favorite">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="car-specs">
+                        <span class="spec">
+                            <i class="fas fa-cog"></i>
+                            {{car.transmission}}
+                        </span>
+                        <span class="spec">
+                            <i class="fas fa-user"></i>
+                            {{car.seats}} Seats
+                        </span>
+                        <span class="spec">
+                            <i class="fas fa-gas-pump"></i>
+                            {{car.fuelType}}
+                        </span>
+                    </div>
+
+                    <div class="card-actions">
+                        <div class="price-section">
+                            <div class="price">{{car.prix | currency}}<span class="period">/day</span></div>
+                            <div class="original-price" *ngIf="car.discount > 0">
+                                {{car.originalPrice | currency}}
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                          
+                            <button class="rent-btn" (click)="rentNow(car); $event.stopPropagation()">
+                                Rent Now
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="load-more-container" *ngIf="!isLoading && cars && cars.length > 0">
+            <button class="load-more-btn" (click)="loadMore()">
+                Show More Rides
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+</section>
+</body>
+</html>

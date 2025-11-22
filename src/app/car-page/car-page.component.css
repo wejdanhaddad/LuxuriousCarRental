@@ -1,0 +1,229 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin: 2rem;
+    gap: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container > * {
+    min-width: min(100%, 300px);
+    max-width: min(100%, 600px);
+    flex: 1;
+}
+
+.image-section {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    border-radius: 1.5rem;
+    object-fit: cover;
+    height: 400px;
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.details {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+    border: 1px solid rgba(114, 41, 231, 0.1);
+    box-shadow: 0 8px 32px rgba(114, 41, 231, 0.08);
+    gap: 1.5rem;
+}
+
+.details .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.details .name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a0b36;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.details .favorite {
+    color: #ff6b35;
+    font-size: 2.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.details .favorite:hover {
+    transform: scale(1.1);
+    color: #ff8c42;
+}
+
+.details .favorite.not {
+    color: #cbd5e0;
+}
+
+.details .favorite.not:hover {
+    color: #a0aec0;
+}
+
+.details .price-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.details .price-label {
+    font-size: 1.1rem;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.details .price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #e74c3c;
+    background: linear-gradient(135deg, #e74c3c, #ff6b35);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.details .description {
+    color: #4a5568;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    margin: 1rem 0;
+}
+
+.details .features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin: 1rem 0;
+}
+
+.details .feature-tag {
+    background: rgba(114, 41, 231, 0.1);
+    color: #7229e7;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(114, 41, 231, 0.2);
+}
+
+.details .action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.details .btn-primary {
+    color: white;
+    background: linear-gradient(135deg, #7229e7, #8c52ff);
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    box-shadow: 0 4px 15px rgba(114, 41, 231, 0.3);
+}
+
+.details .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(114, 41, 231, 0.4);
+    opacity: 0.95;
+}
+
+.details .btn-secondary {
+    color: #7229e7;
+    background: white;
+    border: 2px solid #7229e7;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.details .btn-secondary:hover {
+    background: rgba(114, 41, 231, 0.05);
+    transform: translateY(-2px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        margin: 1rem;
+        gap: 1rem;
+    }
+    
+    .details {
+        padding: 2rem;
+    }
+    
+    .details .header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .details .name {
+        font-size: 1.8rem;
+    }
+    
+    .details .action-buttons {
+        flex-direction: column;
+    }
+    
+    img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 0.5rem;
+    }
+    
+    .details {
+        padding: 1.5rem;
+    }
+    
+    .details .name {
+        font-size: 1.6rem;
+    }
+    
+    .details .price {
+        font-size: 1.7rem;
+    }
+}
